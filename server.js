@@ -36,7 +36,7 @@ const sess = {
     }
 })
 const upload = multer({ storage }); // or simply { dest: 'uploads/' }
-app.use(express.static('public'))
+app.use(express.static('public'));
 
   const helpers = require('./utils/helpers');
 
