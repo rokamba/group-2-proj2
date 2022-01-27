@@ -2,142 +2,54 @@ const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const { Post, User} = require('../../models');
 const withAuth = require('../../utils/auth');
-const upload = require('././')
+const multer = require('multer');
+const path = require('path');
+const uuid = require('uuid').v4;
+const fs = require('fs');
 
-// //Get all posts
-// router.get('/', (req, res) => {
-//     console.log('======================');
-//     Post.findAll({
-//       attributes: [
-//         'id',
-//         'post_url',
-//         'title',
-//         'created_at',
-//         [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
-//       ],
-//       include: [
-//         {
-//           model: Comment,
-//           attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-//           include: {
-//             model: User,
-//             attributes: ['username']
-//           }
-//         },
-//         {
-//           model: User,
-//           attributes: ['username']
-//         }
-//       ]
-//     })
-//       .then(dbPostData => res.json(dbPostData))
-//       .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err);
-//       });
-//   });
+// SET STORAGE
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    console.log('file.',file.path);
+    cb(null, 'uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + file.originalname)
+  }
+})
+const upload = multer({ storage: storage }); 
+  // new post
+  router.post('/image', upload.single('upload'), (req, res, next) => {
+    console.log('here is my request body',req.body);
+    console.log(__dirname+"\\uploads\\"+ req.file.filename);
+    Post.create({
+      caption: req.body.caption,
+      upload: fs.readFileSync(
 
-// //get single post by id
+        //STUCK HERE... need to figure out proper path
+        __dirname + "\\uploads\\" + req.file.filename
+      ),
 
-// router.get('/:id', (req, res) => {
-//     Post.findOne({
-//       where: {
-//         id: req.params.id
-//       },
-//       attributes: [
-//         'id',
-//         'post_url',
-//         'title',
-//         'created_at',
-//         [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
-//       ],
-//       include: [
-//         {
-//           model: Comment,
-//           attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-//           include: {
-//             model: User,
-//             attributes: ['username']
-//           }
-//         },
-//         {
-//           model: User,
-//           attributes: ['username']
-//         }
-//       ]
-//     })
-//       .then(dbPostData => {
-//         if (!dbPostData) {
-//           res.status(404).json({ message: 'No post found with this id' });
-//           return;
-//         }
-//         res.json(dbPostData);
-//       })
-//       .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err);
-//       });
-//   });
-
-//   // new post
-//   router.post('/', withAuth, upload.single('image'), (req, res) => {
-//     Post.create({
-//       title: req.body.title,
-//       post_url: req.body.post_url,
-//       user_id: req.session.user_id
-//     })
-//       .then(dbPostData => res.json(dbPostData))
-//       .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err);
-//       });
-//   });
-
-// //update post
-//   router.put('/:id', withAuth, (req, res) => {
-//     Post.update(
-//       {
-//         title: req.body.title
-//       },
-//       {
-//         where: {
-//           id: req.params.id
-//         }
-//       }
-//     )
-//       .then(dbPostData => {
-//         if (!dbPostData) {
-//           res.status(404).json({ message: 'No post found with this id' });
-//           return;
-//         }
-//         res.json(dbPostData);
-//       })
-//       .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err);
-//       });
-//   });
+    })
+    const file = req.file
+    if (!file) {
+      const error = new Error('Please upload a file')
+      error.httpStatusCode = 400
+      return next(error)
+    }
+      res.send(file)
   
+  });
 
-//   //delete post
-//   router.delete('/:id', withAuth, (req, res) => {
-//     console.log('id', req.params.id);
-//     Post.destroy({
-//       where: {
-//         id: req.params.id
-//       }
-//     })
-//       .then(dbPostData => {
-//         if (!dbPostData) {
-//           res.status(404).json({ message: 'No post found with this id' });
-//           return;
-//         }
-//         res.json(dbPostData);
-//       })
-//       .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err);
-//       });
-//   });
+
+//   // store image in database
+//   var imageName = req.file.originalname;
+//   var inputValues = {
+//       image_name: imageName
+//   }
+// // call model
+// imageModel.storeImage(inputValues, function(data){
+//   res.render('upload-form',{alertMsg:data})
+// })
 
   module.exports = router;
