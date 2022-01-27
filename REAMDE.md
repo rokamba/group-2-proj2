@@ -22,4 +22,4 @@
     - Include authentication (express-session and cookies)
 
 ## Authors:
-Collin Beisel, Jason Boudreaux, Rostin Okamba
+Collin Beisel (newsfeed), Jason Boudreaux(login/registration), Rostin Okamba(post/upload)
