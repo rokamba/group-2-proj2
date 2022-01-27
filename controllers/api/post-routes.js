@@ -4,8 +4,8 @@ const { Post, User} = require('../../models');
 const withAuth = require('../../utils/auth');
 const multer = require('multer');
 const path = require('path');
-const uuid = require('uuid').v4;
 const fs = require('fs');
+
 
 // SET STORAGE
 var storage = multer.diskStorage({
@@ -20,16 +20,14 @@ var storage = multer.diskStorage({
 const upload = multer({ storage: storage }); 
   // new post
   router.post('/image', upload.single('upload'), (req, res, next) => {
+
     console.log('here is my request body',req.body);
-    console.log(__dirname+"\\uploads\\"+ req.file.filename);
+    let reqPath = path.join(__dirname, '../..','uploads/' + req.file.filename);
+    console.log("this is the file path we are looking for the image in",reqPath);
+
     Post.create({
       caption: req.body.caption,
-      upload: fs.readFileSync(
-
-        //STUCK HERE... need to figure out proper path
-        __dirname + "\\uploads\\" + req.file.filename
-      ),
-
+      upload: fs.readFileSync (reqPath),
     })
     const file = req.file
     if (!file) {
@@ -40,16 +38,5 @@ const upload = multer({ storage: storage });
       res.send(file)
   
   });
-
-
-//   // store image in database
-//   var imageName = req.file.originalname;
-//   var inputValues = {
-//       image_name: imageName
-//   }
-// // call model
-// imageModel.storeImage(inputValues, function(data){
-//   res.render('upload-form',{alertMsg:data})
-// })
 
   module.exports = router;
