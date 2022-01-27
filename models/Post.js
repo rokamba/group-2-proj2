@@ -14,7 +14,7 @@ Post.init(
     type: DataTypes.STRING,
     allowNull: false,
     },
-    image: {
+    upload: {
         type: DataTypes.BLOB,
         allowNull: false,
     },

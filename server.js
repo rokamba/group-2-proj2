@@ -2,7 +2,8 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const path = require('path');
-const uuid = require('uuid').v4;
+const multer = require('multer');
+const helpers = require('./utils/helpers');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -20,29 +21,12 @@ const sess = {
     })
   };
 
-  app.use(session(sess));
-
-  const multer = require('multer');
-
-  const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, './uploads')
-    },
-    filename: (req, file, cb) => {
-        const { originalname } = file;
-        // or 
-        // uuid, or fieldname
-        cb(null, uuid + path.extname(originalname));
-    }
-})
-const upload = multer({ storage }); // or simply { dest: 'uploads/' }
+app.use(session(sess));
 app.use(express.static('public'));
 
-  const helpers = require('./utils/helpers');
+const hbs = exphbs.create({ helpers });
 
-  const hbs = exphbs.create({ helpers });
-
-  app.engine('handlebars', hbs.engine);
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 app.use(express.json());
@@ -52,5 +36,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('./controllers/'));
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
+  app.listen(PORT, () => console.log('Now listening on port ' + PORT));
 });
