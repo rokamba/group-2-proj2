@@ -25,12 +25,14 @@ const upload = multer({ storage: storage});
     let reqPath = path.join(__dirname, '../..','uploads/' + req.file.filename);
     console.log("this is the file path we are looking for the image in",reqPath);
 
-
+//THIS ROUTE WORKS!!!
     Post.create({
-//upadate this sequelize create so that it doesn't add the data, but adds the image name.
-//Then the route will cross reference that image name in the uplaods folder
       caption: req.body.caption,
       upload: req.file.filename,
+      filename: req.file.fieldname,
+      filepath: req.file.filepath,
+      mimetype: req.file.mimetype,
+      size: req.file.size,
     })
     const file = req.file
     if (!file) {
@@ -38,23 +40,41 @@ const upload = multer({ storage: storage});
       error.httpStatusCode = 400
       return next(error)
     }
-      res.send(file)
-  
+      res.send(file);
   });
 
+//THIS ROUTE returns the image but does not return the caption!!!!
+// get single post
+router.get('/:filename', (req, res) => {
+  const {filename} = req.params;
+  let reqPath = path.join(__dirname, '../..','uploads/' + filename);
+  
+  Post.findOne({
+    where: {
+    upload: filename,
+    },
+  })
+  .then(res.sendFile(reqPath))
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+});
 
-// get all users
+
+//THIS ROUTE DOES NOT WORK YET... need to figure out how to GET multiple images.
+// get all posts
 router.get('/', (req, res) => {
-  console.log('======================');
+  let reqPath = path.join(__dirname, '../..','uploads/');
 
   Post.findAll({
   })
-    .then(dbPostData => res.json(dbPostData))
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-
+  .then(res.sendFile(reqPath))
+  .catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+  });
+    
 });
 
 
