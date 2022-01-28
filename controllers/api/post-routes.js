@@ -17,15 +17,18 @@ var storage = multer.diskStorage({
     cb(null, Date.now() + file.originalname)
   }
 })
-const upload = multer({ storage: storage }); 
+const upload = multer({ storage: storage}); 
   // new post
-  router.post('/image', upload.single('upload'), (req, res, next) => {
+  router.post('/', upload.single('upload'), (req, res, next) => {
 
     console.log('here is my request body',req.body);
     let reqPath = path.join(__dirname, '../..','uploads/' + req.file.filename);
     console.log("this is the file path we are looking for the image in",reqPath);
 
+
     Post.create({
+//upadate this sequelize create so that it doesn't add the data, but adds the image name.
+//Then the route will cross reference that image name in the uplaods folder
       caption: req.body.caption,
       upload: fs.readFileSync (reqPath),
     })
@@ -38,5 +41,22 @@ const upload = multer({ storage: storage });
       res.send(file)
   
   });
+
+
+// get all users
+router.get('/', (req, res) => {
+  console.log('======================');
+
+  Post.findAll({
+  })
+    .then(dbPostData => res.json(dbPostData))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+
+});
+
+
 
   module.exports = router;

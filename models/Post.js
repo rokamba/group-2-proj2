@@ -15,7 +15,7 @@ Post.init(
     allowNull: false,
     },
     upload: {
-        type: DataTypes.BLOB,
+        type: DataTypes.BLOB("long"),
         allowNull: false,
     },
     user_id: {
