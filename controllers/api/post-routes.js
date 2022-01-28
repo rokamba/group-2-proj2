@@ -30,7 +30,7 @@ const upload = multer({ storage: storage});
 //upadate this sequelize create so that it doesn't add the data, but adds the image name.
 //Then the route will cross reference that image name in the uplaods folder
       caption: req.body.caption,
-      upload: fs.readFileSync (reqPath),
+      upload: req.file.filename,
     })
     const file = req.file
     if (!file) {
