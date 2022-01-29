@@ -1,3 +1,5 @@
+const dbConfig = require('../config/connection');
+
 // import all models
 const Post = require('./Post');
 const User = require('./User');
