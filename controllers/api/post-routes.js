@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const { Post, User} = require('../../models');
+const { Post, User } = require('../../models');
 const withAuth = require('../../utils/auth');
 const multer = require('multer');
 const path = require('path');
@@ -10,7 +10,7 @@ const fs = require('fs');
 // SET STORAGE
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    console.log('file.',file.path);
+    console.log('file.', file.path);
     cb(null, 'uploads')
   },
   filename: function (req, file, cb) {
@@ -54,7 +54,11 @@ router.get('/:filename', (req, res) => {
     upload: filename,
     },
   })
-  .then(res.sendFile(reqPath))
+  //.then(res.sendFile(reqPath))
+  .then (function(dbPost){
+    console.log (dbPost)
+    
+  })
   .catch(err => {
     console.log(err);
     res.status(500).json(err);
@@ -65,18 +69,26 @@ router.get('/:filename', (req, res) => {
 //THIS ROUTE DOES NOT WORK YET... need to figure out how to GET multiple images.
 // get all posts
 router.get('/', (req, res) => {
-  let reqPath = path.join(__dirname, '../..','uploads/');
 
-  Post.findAll({
-  })
-  .then(res.sendFile(reqPath))
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  });
+  Post.findAll({})
+  .then(function (dbPost) {
+    const posts = dbPost.map(function (post) {
+      return post.get({ plain: true })
+    })
+console.log(posts)
+    res.json(posts)
+ // let reqPath = path.join(__dirname, '../..','uploads/');
+
+  // Post.findAll({
+  // })
+  // .then(res.sendFile(reqPath))
+  // .catch(err => {
+  //   console.log(err);
+  //   res.status(500).json(err);
+   });
     
 });
 
 
 
-  module.exports = router;
+module.exports = router;
