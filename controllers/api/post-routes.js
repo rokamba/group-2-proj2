@@ -10,8 +10,7 @@ const fs = require('fs');
 // SET STORAGE
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    console.log('file.', file.path);
-    cb(null, 'uploads')
+    cb(null, 'public/uploads')
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + file.originalname)
@@ -22,13 +21,16 @@ const upload = multer({ storage: storage});
   router.post('/', upload.single('upload'), (req, res, next) => {
 
     console.log('here is my request body',req.body);
-    let reqPath = path.join(__dirname, '../..','uploads/' + req.file.filename);
+    let reqPath = path.join(__dirname, '../..','public','uploads/' + req.file.filename);
     console.log("this is the file path we are looking for the image in",reqPath);
 
 //THIS ROUTE WORKS!!!
     Post.create({
       caption: req.body.caption,
       upload: req.file.filename,
+      user_id: req.body.user_id,
+      created_at: req.body.created_at,
+      updated_at: req.body.updated_at,
       filename: req.file.fieldname,
       filepath: req.file.filepath,
       mimetype: req.file.mimetype,
@@ -47,7 +49,7 @@ const upload = multer({ storage: storage});
 // get single post
 router.get('/:filename', (req, res) => {
   const {filename} = req.params;
-  let reqPath = path.join(__dirname, '../..','uploads/' + filename);
+  //let reqPath = path.join(__dirname, '../..','uploads/' + filename);
   
   Post.findOne({
     where: {
@@ -57,7 +59,7 @@ router.get('/:filename', (req, res) => {
   //.then(res.sendFile(reqPath))
   .then (function(dbPost){
     console.log (dbPost)
-    
+    res.json(dbPost)
   })
   .catch(err => {
     console.log(err);
@@ -66,7 +68,7 @@ router.get('/:filename', (req, res) => {
 });
 
 
-//THIS ROUTE DOES NOT WORK YET... need to figure out how to GET multiple images.
+//THIS ROUTE WORKS!
 // get all posts
 router.get('/', (req, res) => {
 
@@ -75,7 +77,7 @@ router.get('/', (req, res) => {
     const posts = dbPost.map(function (post) {
       return post.get({ plain: true })
     })
-console.log(posts)
+
     res.json(posts)
  // let reqPath = path.join(__dirname, '../..','uploads/');
 

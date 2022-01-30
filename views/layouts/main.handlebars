@@ -2,35 +2,36 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device width, initial-scale=1.0">
-    <title>MEMEGRAM</title>
-    <!-- insert css stylesheet here -->
-    <!-- <link rel="stylesheet" href="/stylesheets/style.css"> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memegram</title>
+  <link rel="shortcut icon" type="image/jpg" href="../../public/logos/favicon-16x16.png"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
 <body>
-    <header>
-        <h1>MEMEGRAM</h1>
-        <nav>{{#if loggedIn}}
-            <a href="/newsfeed">Newsfeed</a>
-            <button id="logout">LOGOUT</button>
-            {{else}}
-            <a href="/login">LOGIN</a>
-            {{/if}}
-        </nav>
+  <div class="wrapper bg-light">
+    <header class="bg-secondary text-center sticky-top" style="height: 10vh;">
+      <h1>
+        <a href="/" style="color: white; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"class="text-center">Memegram</a>
+      </h1>
+      <nav class="">
+        <button id="new-post-btn"class="btn bg-white">New Post</button>
+      </nav>
     </header>
-
-    <main>
-        {{{ body }}}
+    <main class="bg-light">
+      {{{ body }}}
     </main>
-<!--    <footer>
+    <footer class="bg-secondary text-white text-center sticky-bottom" style="height: 5vh;">
+      <p>Thanks for visiting Memegram!</p>
+      <p>Made with &#128151; by: Collin Beisel, Jason Boudreaux, Rostin Okamba</p>
+    </footer>
+  </div>
 
-    </footer> -->
 
-    {{#if loggedIn}}
-    <script src="/javascript/logout.js"></script>
-    {{/if}}
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>
