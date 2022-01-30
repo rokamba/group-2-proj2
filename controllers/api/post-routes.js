@@ -47,7 +47,7 @@ const upload = multer({ storage: storage});
 // get single post
 router.get('/:filename', (req, res) => {
   const {filename} = req.params;
-  let reqPath = path.join(__dirname, '../..','uploads/' + filename);
+  //let reqPath = path.join(__dirname, '../..','uploads/' + filename);
   
   Post.findOne({
     where: {
@@ -57,7 +57,7 @@ router.get('/:filename', (req, res) => {
   //.then(res.sendFile(reqPath))
   .then (function(dbPost){
     console.log (dbPost)
-    
+    res.json(dbPost)
   })
   .catch(err => {
     console.log(err);
@@ -66,7 +66,7 @@ router.get('/:filename', (req, res) => {
 });
 
 
-//THIS ROUTE DOES NOT WORK YET... need to figure out how to GET multiple images.
+//THIS ROUTE WORKS!
 // get all posts
 router.get('/', (req, res) => {
 
@@ -75,7 +75,6 @@ router.get('/', (req, res) => {
     const posts = dbPost.map(function (post) {
       return post.get({ plain: true })
     })
-console.log(posts)
     res.json(posts)
  // let reqPath = path.join(__dirname, '../..','uploads/');
 
