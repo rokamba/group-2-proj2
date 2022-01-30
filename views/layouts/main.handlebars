@@ -5,25 +5,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Memegram</title>
+  <link rel="shortcut icon" type="image/jpg" href="../../public/logos/favicon-16x16.png"/>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
 <body>
-  <div class="wrapper">
-    <header class="bg-secondary align-text text-center" style="height: 5vh;">
+  <div class="wrapper bg-info">
+    <header class="bg-secondary text-center sticky-top" style="height: 7vh;">
       <h1>
-        <a href="/" style="color: white;">Memegram</a>
+        <a href="/" style="color: white; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"class="text-center">Memegram</a>
       </h1>
-      <nav>
-      
+      <nav class="">
+        <button id="new-post-btn"class="btn bg-white">New Post</button>
       </nav>
     </header>
     <main class="bg-info">
       {{{ body }}}
     </main>
-    <footer class="bg-secondary text-white" style="height: 5vh;">
-      Thanks for visiting Memegram!
+    <footer class="bg-secondary text-white text-center sticky-bottom" style="height: 5vh;">
+      <p>Thanks for visiting Memegram!</p>
+      <p>Made with &#128151; by: Collin Beisel, Jason Boudreaux, Rostin Okamba</p>
     </footer>
   </div>
 
