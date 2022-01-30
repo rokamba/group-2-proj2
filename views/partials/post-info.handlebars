@@ -1,13 +1,14 @@
-<article class="post">
-  <div class="username">
+<article class="post-card col-12 card bg-light pl-4 py-3" style="width: 50vw;">
+  <div class="post-username card-text">
     <p>{{user.username}}</p>
   </div>
-  <div class="image">
-    <img src="../../uploads/1643506747934IMG_1140.jpg" style="width: 200px; height:200px" >
+  <div class="post-image mx-auto">
+    <img src="/uploads/{{upload}}" class="mr-3 rounded mx-auto" style="width:100%;">
   </div>
-  <div class="caption">
-     <p>{{caption}}</p>
-  </div>
+    <div class="post-caption card-body">
+        <p>{{user.username}}: {{caption}}</p>
+        <P>Posted at: {{created_at}}</P>
+    </div>
 </article>
 
-<script src="../../public/javascript/newsfeed.js"></script>
+
