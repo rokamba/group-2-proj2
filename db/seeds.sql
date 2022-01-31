@@ -1,6 +1,5 @@
-INSERT INTO User (username,email,password)
+INSERT INTO User (username, email, password)
 VALUES
-('cbeisel','cbeisel@test.com','test1'),
-('YoMamma','yoMamma@test.com','test2'),
-('Frank1969','frank@test.com','test3'),
-('SquarePants','jeff@test.com','test4');
+('test','test@test.com','test123'),
+('test2','test2@test.com','test123'),
+('test3','test3@test.com','test123');
