@@ -14,5 +14,4 @@ User.hasMany(Post, {
     onDelete: 'SET NULL'
   });
 
-
 module.exports = { User, Post};
