@@ -5,7 +5,7 @@ async function loginFormHandler(event) {
     const password = document.querySelector('#password-login').value.trim();
 
     if (email && password) {
-        const respose = await fetch('/api/users/login', {
+        const response = await fetch('/api/users/login', {
             method: 'post',
             body: JSON.stringify({
                 email, 
@@ -15,8 +15,10 @@ async function loginFormHandler(event) {
         });
 
         if (response.ok) {
-            document.location.replace('/dashboard/');
+            document.location.replace('/');
+            console.log('you made it to the if statement');
         } else {
+            console.log('you made it to the else statement');
             alert(response.statusText);
         }
     }
@@ -41,7 +43,7 @@ if (username && email && password) {
     });
 
     if (response.ok) {
-        document.location.replace('/dashboard/');
+        document.location.replace('/');
     } else {
         alert(response.statusText);
     }

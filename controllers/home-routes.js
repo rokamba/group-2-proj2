@@ -9,14 +9,18 @@ router.get('/', (req, res) => {
         include: [{
             model: User,
             required: false
-           }]
+           }],
+            // Add order conditions here....
+        order: [
+          ['created_at', 'DESC'],
+        ],
     })
       .then(dbPostData => {
         const posts = dbPostData.map(post => post.get({ plain: true }));
   
         res.render('newsfeed', {
           posts,
-          //loggedIn: req.session.loggedIn
+          loggedIn: req.session.loggedIn
         });
       })
       .catch(err => {
@@ -24,5 +28,15 @@ router.get('/', (req, res) => {
         res.status(500).json(err);
       });
   });
+
+  //render login screen
+
+router.get('/login', (req, res) => {
+res.render('login', );
+});
+
+router.get('/post', (req, res) => {
+    res.render('post', );
+    });
 
 module.exports = router;

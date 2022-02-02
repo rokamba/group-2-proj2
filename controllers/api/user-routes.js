@@ -38,7 +38,6 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     // expects {username: 'test', email: 'test@gmail.com', password: 'test123'}
     User.create({
-        attributes: { exclude: ['password'] },
         username: req.body.username,
         email: req.body.email,
         password: req.body.password
@@ -58,9 +57,10 @@ router.post('/', (req, res) => {
 router.post('/login', (req, res) => {
     // expects {email: 'test@gmail.com', password: 'test123'}
     User.findOne({
-        attributes: { exclude: ['password'] },
+
         where: {
-        email: req.body.email
+        email: req.body.email,
+        password: req.body.password
         }
     }).then(dbUserData => {
         if (!dbUserData) {
@@ -101,7 +101,6 @@ router.put('/:id', (req, res) => {
     // expects {username: 'test', email: 'test@gmail.com', password: 'test123'}
     User.update(req.body, {
         individualHooks: true,
-        attributes: { exclude: ['password'] },
         where: {
             id: req.params.id
         }
