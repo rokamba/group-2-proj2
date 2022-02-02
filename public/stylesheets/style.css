@@ -1,0 +1,27 @@
+.login-form {
+    margin: 20px 100px 20px 50%; 
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding: 5px;
+    border: 3px solid var(--dark);
+    border-radius: var(--border-radius);
+    border-style: double;
+    border-width: thick;
+    background-color: #6c757d;
+    color: var(--light);
+    text-align: center;
+  }
+
+  .signup-form {
+    margin: 20px 50% 20px 100px; 
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding: 5px;
+    border: 3px solid var(--dark);
+    border-radius: var(--border-radius);
+    border-style: double;
+    border-width: thick;
+    background-color: #6c757d;
+    color: var(--light);
+    text-align: center;
+  }
