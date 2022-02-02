@@ -36,7 +36,7 @@ router.get('/:id', (req, res) => {
 
 // POST route /api/users
 router.post('/', (req, res) => {
-    // expects {username: 'test', email: 'test@gmail.com', password: 'test123'}
+    // expects {username: 'test', email: 'test@test.com', password: 'test123'}
     User.create({
         username: req.body.username,
         email: req.body.email,
@@ -55,9 +55,8 @@ router.post('/', (req, res) => {
 
 // login route
 router.post('/login', (req, res) => {
-    // expects {email: 'test@gmail.com', password: 'test123'}
+    // expects {email: 'test@test.com', password: 'test123'}
     User.findOne({
-
         where: {
         email: req.body.email,
         password: req.body.password
@@ -98,7 +97,7 @@ router.post('/logout', (req, res) => {
 
 // PUT /api/users/1
 router.put('/:id', (req, res) => {
-    // expects {username: 'test', email: 'test@gmail.com', password: 'test123'}
+    // expects {username: 'test', email: 'test@test.com', password: 'test123'}
     User.update(req.body, {
         individualHooks: true,
         where: {
