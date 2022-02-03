@@ -14,15 +14,19 @@
 <body>
   <div class="wrapper bg-light">
     <header class="bg-secondary text-center sticky-top d-flex justify-content-end" style="height: 10vh;">
-      <nav class="navbar fixed-top navbar-expand-md navbar-light bg-secondary" role="navigation">
+      <nav class="navbar fixed-top navbar-expand-md navbar-light bg-secondary d-flex" role="navigation">
         <div class="container collapse navbar-collapse">
           <ul>
             <a href="/" class="navbar-brand text-white"><h1>Memegram</h1></a>
           </ul>
           <ul class="navbar-nav ml-auto">
+            
             <i id="new-post" class="far fa-plus-square fa-3x m-3" style="color: white;"></i>
-            <button id="login" class="btn border border-light rounded bg-light m-3">Login</button>
             <button id="logout"class="btn border border-light rounded bg-light m-3" >Logout</button>
+            
+            <button id="login" class="btn border border-light rounded bg-light m-3">Login</button>
+            
+            
           </ul>
 
           
@@ -33,16 +37,20 @@
     <main class="bg-light">
       {{{ body }}}
     </main>
+    <!--
     <footer class="bg-secondary text-white text-center sticky-bottom pt-2" style="height: 5vh;">
       <p>Thanks for visiting Memegram!</p>
       <p>Made with &#128151; by: Collin Beisel, Jason Boudreaux, Rostin Okamba</p>
     </footer>
+    -->
   </div>
 
 
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="/javascript/main.js"></script>
+<script src="/javascript/logout.js"></script>
+<script src="/javascript/login.js"></script>
 </body>
 
 </html>

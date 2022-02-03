@@ -1,6 +1,8 @@
-<h1>Upload a picture and description!</h1>
-<form action="/api/post" method="post" enctype="multipart/form-data">
-  <input type="file" name="upload" accept="image/"/>
-  <input type="text" name="caption"/>
-  <button type="submit">Upload Post!</button>
+<div class =" post-form justify-content-center">
+  <h1 id="post-title">Upload a meme and description!</h1>
+<form class="form" action="/api/posts" method="post" enctype="multipart/form-data">
+  <input class= "fileBtn" type="file" name="upload" accept="image/" />
+  <input type="text" name ="caption"/>
+  <button class = "btn btn-primary"  type="submit">Upload Post!</button>
 </form>
+</div>
