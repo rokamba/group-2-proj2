@@ -44,6 +44,7 @@ const upload = multer({ storage: storage});
     }
       res.send(file);
   });
+  
 
 //THIS ROUTE returns the image but does not return the caption!!!!
 // get single post
