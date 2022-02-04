@@ -42,8 +42,9 @@ const upload = multer({ storage: storage});
       error.httpStatusCode = 400
       return next(error)
     }
-      res.send(file);
+    res.redirect('/');
   });
+  
 
 //THIS ROUTE returns the image but does not return the caption!!!!
 // get single post

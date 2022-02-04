@@ -11,7 +11,7 @@
     color: var(--light);
     text-align: center;
   }
-
+  
   .signup-form {
     margin: 20px 50% 20px 100px; 
     flex: 0 0 50%;
@@ -25,3 +25,30 @@
     color: var(--light);
     text-align: center;
   }
+
+  .post-form {
+    height: 650px;
+    text-align: center;
+    border: 1p solid;
+}
+
+#post-title {
+    padding-top: 8%;
+    text-shadow: 2px 2px 5px rgb(31, 30, 30);
+}
+
+.fileBtn {
+    padding-top: 10%;
+}
+
+.form {
+    background-color: grey;
+    height: 200px;
+    text-align: center;
+
+    width: 50%;
+    margin-top: 5%;
+    margin-left: 22.5%;
+    border: 2px rgb(162, 163, 162) solid;
+    box-shadow: 10px 10px 5px rgb(70, 69, 69);
+}

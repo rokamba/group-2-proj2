@@ -1,13 +1,15 @@
 <article class="post-card col-12 card bg-light pl-4 py-3" style="width: 75vw;">
   <div class="post-username card-text">
-    <p>{{user.username}}</p>
+    <p class=" border border-secondary rounded p-1 font-weight-bold" style="width: fit-content;">{{user.username}}</p>
   </div>
   <div class="post-image mx-auto">
     <img src="/uploads/{{upload}}" class="mr-3 rounded mx-auto" style="width:100%;">
   </div>
     <div class="post-caption card-body">
-        <p>{{user.username}}: {{caption}}</p>
-        <P>Posted at: {{created_at}}</P>
+        <p class=" border border-secondary rounded p-1 font-weight-bold" style="width: fit-content;">{{user.username}}:</p>
+        <p class="p-1">{{caption}}</p>
+        <br>
+        <P class="text-center text-secondary" style="width: fit-content;">Posted: {{created_at}}</P>
     </div>
 </article>
 
