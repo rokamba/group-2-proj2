@@ -15,7 +15,7 @@ async function loginFormHandler(event) {
         });
 
         if (response.ok) {
-            res.redirect('/');
+            //window.location.href='/';
             console.log('you made it to the if statement');
         } else {
             console.log('you made it to the else statement');
@@ -43,7 +43,7 @@ if (username && email && password) {
     });
 
     if (response.ok) {
-        res.redirect('/');
+      //  window.location.href='/login';
     } else {
         alert(response.statusText);
     }
