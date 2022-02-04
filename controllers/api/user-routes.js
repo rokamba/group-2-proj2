@@ -55,13 +55,13 @@ router.post('/', (req, res) => {
 
 // login route
 router.post('/login', (req, res) => {
-    // expects {email: 'test@test.com', password: 'test123'}
+    console.log("login route is being hit")
     User.findOne({
         where: {
         email: req.body.email,
-        password: req.body.password
         }
     }).then(dbUserData => {
+        console.log("here is the .then data", dbUserData);
         if (!dbUserData) {
             res.status(400).json({ message: 'No user with that email address!' });
             return;
@@ -81,7 +81,12 @@ router.post('/login', (req, res) => {
 
         res.json({ user: dbUserData, message: 'You are now logged in!' });
     });
-    });
+    })
+    .catch (
+        err => {
+            console.error(err);
+        }
+    )
 });
 
 router.post('/logout', (req, res) => {
