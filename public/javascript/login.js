@@ -15,8 +15,10 @@ async function loginFormHandler(event) {
         });
 
         if (response.ok) {
-            //window.location.href='/';
+
+            document.location.replace('/');
             console.log('you made it to the if statement');
+
         } else {
             console.log('you made it to the else statement');
             alert(response.statusText);
@@ -43,7 +45,8 @@ if (username && email && password) {
     });
 
     if (response.ok) {
-      //  window.location.href='/login';
+        document.location.replace('/');
+
     } else {
         alert(response.statusText);
     }
