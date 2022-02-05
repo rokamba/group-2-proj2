@@ -28,7 +28,7 @@ const upload = multer({ storage: storage});
     Post.create({
       caption: req.body.caption,
       upload: req.file.filename,
-      user_id: req.body.user_id,
+      user_id: req.session.user_id,
       created_at: req.body.created_at,
       updated_at: req.body.updated_at,
       filename: req.file.fieldname,

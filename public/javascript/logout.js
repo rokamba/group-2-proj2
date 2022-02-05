@@ -9,6 +9,9 @@ async function logout() {
     } else {
         alert(response.statusText);
     }
+    location.href = "/login";
 }
 
-document.querySelector('#logout').addEventListener('click', logout);
+document.getElementById('logout').addEventListener('click', logout);
+
+// module.exports = logout;
