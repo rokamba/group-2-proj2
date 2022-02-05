@@ -5,7 +5,7 @@ const withAuth = require('../utils/auth')
 
 // get all posts for homepage
 router.get('/', (req, res) => {
-    console.log('======================');
+    console.log(req.session);
     Post.findAll({
         include: [{
             model: User,
