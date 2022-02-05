@@ -4,7 +4,7 @@ const { Post, User} = require('../models');
 const withAuth = require('../utils/auth')
 
 // get all posts for homepage
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
     console.log(req.session);
     Post.findAll({
         include: [{
@@ -40,7 +40,7 @@ router.get('/login', (req, res) => {
 res.render('login', );
 });
 
-router.get('/post', (req, res) => {
+router.get('/post', withAuth, (req, res) => {
     res.render('post', );
     });
 
