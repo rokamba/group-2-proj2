@@ -4,6 +4,17 @@
 	- Users must create an account and log in to interact
     - Once logged in, users can scroll through a feed of photos with captions from other app users
 
+## Table of Contents
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [Technologies](#technologies)
+  * [License](#license)
+  * [Authors](#authors)
+
+## Installation
+
+## Usage
+
 ## Technologies:
 	- Bootstrap
 	- HTML

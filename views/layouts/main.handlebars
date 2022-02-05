@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memegram</title>
+  <link rel="icon" type="image/png" href="http://dogemuchwow.com/wp-content/uploads/2016/05/cropped-the-doge-favicon-blue.png">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+  <div class="wrapper bg-light">
+    <header class="bg-secondary text-center sticky-top d-flex justify-content-end" style="height: 10vh;">
+      <nav class="navbar fixed-top navbar-expand-md navbar-light bg-secondary d-flex" role="navigation">
+        <div class="container collapse navbar-collapse">
+          <ul>
+            <a href="/" class="navbar-brand text-white"><h1>Memegram</h1></a>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            {{#if loggedIn}}
+            <i id="new-post" class="far fa-plus-square fa-3x m-3" style="color: white;"></i>
+            <button id="logout"class="btn border border-light rounded bg-light m-3" >Logout</button>
+            {{else}}
+            <button id="login" class="btn border border-light rounded bg-light m-3">Login</button>
+            {{/if}}
+            
+          </ul>
+
+          
+        </div>
+
+      </nav>
+    </header>
+    <main class="bg-light">
+      {{{ body }}}
+    </main>
+    <!--
+    <footer class="bg-secondary text-white text-center sticky-bottom pt-2" style="height: 5vh;">
+      <p>Thanks for visiting Memegram!</p>
+      <p>Made with &#128151; by: Collin Beisel, Jason Boudreaux, Rostin Okamba</p>
+    </footer>
+    -->
+  </div>
+
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="/javascript/main.js"></script>
+<script src="/javascript/logout.js"></script>
+<!-- <script src="/javascript/login.js"></script> -->
+</body>
+
+</html>
