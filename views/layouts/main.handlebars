@@ -20,12 +20,12 @@
             <a href="/" class="navbar-brand text-white"><h1>Memegram</h1></a>
           </ul>
           <ul class="navbar-nav ml-auto">
-            
+            {{#if loggedIn}}
             <i id="new-post" class="far fa-plus-square fa-3x m-3" style="color: white;"></i>
             <button id="logout"class="btn border border-light rounded bg-light m-3" >Logout</button>
-            
+            {{else}}
             <button id="login" class="btn border border-light rounded bg-light m-3">Login</button>
-            
+            {{/if}}
             
           </ul>
 

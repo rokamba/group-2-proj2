@@ -1,14 +1,9 @@
-//const logout = require('./logout');
-
-document.getElementById("login").onclick = function () {
-    location.href = "/login";
-};
-
-//  document.getElementById("logout").onclick = function () {
-//     logout();
-//     location.href = "/login";
-// };
+// window.onload = function(){
 
 document.getElementById("new-post").onclick = function () {
     location.href = "/post";
+};
+
+document.getElementById("login").onclick = function () {
+    location.href = "/login";
 };
