@@ -45,22 +45,27 @@ router.post('/', (req, res) => {
     .then(dbUserData => {
         req.session.save(() => {
         req.session.user_id = dbUserData.id;
-        req.session.username = dbUserData.username;
+       // req.session.username = dbUserData.username;
         req.session.loggedIn = true;
     
-        res.json(dbUserData);
+        res.status(200).json(dbUserData);
         });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
     });
 });
 
 // login route
 router.post('/login', (req, res) => {
-    // expects {email: 'test@test.com', password: 'test123'}
+    console.log("login route is being hit")
     User.findOne({
         where: {
         email: req.body.email
         }
     }).then(dbUserData => {
+        console.log("here is the .then data", dbUserData);
         if (!dbUserData) {
             res.status(400).json({ message: 'No user with that email address!' });
             return;
@@ -80,9 +85,15 @@ router.post('/login', (req, res) => {
 
         res.json({ user: dbUserData, message: 'You are now logged in!' });
     });
-    });
+    })
+    .catch (
+        err => {
+            console.error(err);
+        }
+    )
 });
 
+// logout route
 router.post('/logout', (req, res) => {
         if (req.session.loggedIn) {
             req.session.destroy(() => {

@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, Sequelize } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Post extends Model {}
@@ -17,6 +17,12 @@ Post.init(
     upload: {
         type: DataTypes.STRING,
         allowNull: false,
+    },
+    created_at: {
+     type: Sequelize.DATEONLY
+    },
+    updated_at: {
+      type: Sequelize.DATEONLY
     },
     user_id: {
       type: DataTypes.INTEGER,

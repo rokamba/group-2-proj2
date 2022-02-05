@@ -28,7 +28,7 @@ const upload = multer({ storage: storage});
     Post.create({
       caption: req.body.caption,
       upload: req.file.filename,
-      user_id: req.body.user_id,
+      user_id: req.session.user_id,
       created_at: req.body.created_at,
       updated_at: req.body.updated_at,
       filename: req.file.fieldname,
@@ -42,8 +42,9 @@ const upload = multer({ storage: storage});
       error.httpStatusCode = 400
       return next(error)
     }
-      res.send(file);
+    res.redirect('/');
   });
+  
 
 //THIS ROUTE returns the image but does not return the caption!!!!
 // get single post
